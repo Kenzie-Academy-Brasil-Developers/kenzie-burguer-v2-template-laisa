@@ -3,12 +3,10 @@ import { StyledProductCard } from './style';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
 import { CartContext } from '../../../providers/CartContext';
-import { CartsContext } from '../../../providers/CartsModal';
 
 const ProductCard = () => 
 {
-  const { products } = useContext(CartContext);
-  const { cart, setCart } = useContext(CartsContext);
+  const { products, addBurguer } = useContext(CartContext);
   
   return (
    <>
@@ -27,7 +25,7 @@ const ProductCard = () =>
             </StyledTitle>
             <StyledParagraph className='category'>{category}</StyledParagraph>
             <StyledParagraph className='price'>R$ {price.toFixed(2)}</StyledParagraph>
-            <StyledButton $buttonSize='medium' $buttonStyle='green' onClick={() => {setCart([...cart, item])}}>
+            <StyledButton $buttonSize='medium' $buttonStyle='green' onClick={() => addBurguer(item)}>
               Adicionar
             </StyledButton>
           </div>

@@ -33,7 +33,6 @@ const CartModal = ({ onClose }: ICartModal) =>
       </div>
     </dialog>
   </StyledCartModalBox>
-  
 );
 
 export default CartModal;

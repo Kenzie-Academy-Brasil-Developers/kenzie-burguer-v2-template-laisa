@@ -40,8 +40,22 @@ export const CartContextProvider = ({ children }: IDefaultProviderProps) =>
     local()
   }, [token]);
 
+  const addBurguer = (product: IProducts) =>
+  {
+    const retorno = productCarts.find((productCart) => productCart.id === product.id)
+    if(!retorno)
+    {
+      setProductCarts([...productCarts, product]);
+      console.log('Produto adicionado com sucesso!');
+      console.log(productCarts);
+    }else
+    {
+      toast.error('Produto já existente no carrinho');
+    }
+  }
+
   return (
-    <CartContext.Provider value={{ products, setProducts, search, setSearch, searchList }}>
+    <CartContext.Provider value={{ products, setProducts, search, setSearch, searchList, addBurguer, productCarts, setProductCarts }}>
       { children }
     </CartContext.Provider>
   )

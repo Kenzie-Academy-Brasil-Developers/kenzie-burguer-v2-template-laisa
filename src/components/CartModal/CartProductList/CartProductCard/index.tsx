@@ -2,15 +2,15 @@ import { MdDelete } from 'react-icons/md';
 import { useContext } from 'react';
 import { StyledCartProductCard } from './style';
 import { StyledTitle } from '../../../../styles/typography';
-import { CartsContext } from '../../../../providers/CartsModal';
+import { CartContext } from '../../../../providers/CartContext';
 
 
 const CartProductCard = () => {
-  const { cart } = useContext(CartsContext);
+  const { productCarts } = useContext(CartContext);
 
   return (
     <>
-    {cart.map((itens: any) =>
+    {productCarts.map((itens: any) =>
     {
       const { id, name, img } = itens;
       return (
