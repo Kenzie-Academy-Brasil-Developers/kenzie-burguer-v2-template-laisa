@@ -1,10 +1,11 @@
 import { MdClose } from 'react-icons/md';
 import CartProductList from './CartProductList';
-
 import { StyledCartModalBox } from './style';
 import { StyledParagraph, StyledTitle } from '../../styles/typography';
+import { ICartModal } from '../../providers/@types'
 
-const CartModal = () => (
+const CartModal = ({ onClose }: ICartModal) => 
+(
   <StyledCartModalBox>
     <dialog>
       <header>
@@ -14,9 +15,7 @@ const CartModal = () => (
         <button
           type='button'
           aria-label='Fechar'
-          onClick={() => {
-            console.log('Lógica aqui');
-          }}
+          onClick={onClose}
         >
           <MdClose size={21} />
         </button>
@@ -28,11 +27,13 @@ const CartModal = () => (
           <StyledTitle tag='h3' $fontSize='three' textAlign='center'>
             Sua sacola está vazia
           </StyledTitle>
-          <StyledParagraph textAlign='center'>Adicione itens</StyledParagraph>
+          <StyledParagraph textAlign='center'>Adicione itens
+          </StyledParagraph>
         </div>
       </div>
     </dialog>
   </StyledCartModalBox>
+  
 );
 
 export default CartModal;

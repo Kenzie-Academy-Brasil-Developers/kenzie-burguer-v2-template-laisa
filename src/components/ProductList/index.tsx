@@ -5,6 +5,6 @@ const ProductList = () => (
   <StyledProductList>
     <ProductCard />
   </StyledProductList>
-);
+)
 
 export default ProductList;
