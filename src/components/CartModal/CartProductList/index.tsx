@@ -7,24 +7,27 @@ import { CartContext } from '../../../providers/CartContext';
 
 const CartProductList = () => 
 {
-  const { searchList } = useContext(CartContext);
+  const { carts, remove } = useContext(CartContext);
+  const total = carts.reduce((totalMoney, cart) =>
+  {
+    return totalMoney + Number(cart.price)
+  }, 0);
 
   return (
-
   <StyledCartProductList>
     <ul>
-      {searchList.map((product) => (
-        <CartProductCard key={product.id} />
-      ))}
+      <CartProductCard />
     </ul>
-
+    
     <div className='totalBox'>
       <StyledParagraph>
         <strong>Total</strong>
       </StyledParagraph>
-      <StyledParagraph className='total'>R$ 14,00</StyledParagraph>
+      <StyledParagraph className='total'>
+        {total.toFixed(2)}
+      </StyledParagraph>
     </div>
-    <StyledButton $buttonSize='default' $buttonStyle='gray'>
+    <StyledButton $buttonSize='default' $buttonStyle='gray' onClick={remove}>
       Remover todos
     </StyledButton>
   </StyledCartProductList>

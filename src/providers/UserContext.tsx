@@ -15,14 +15,13 @@ export const UserContextProvider = ({ children }: IDefaultProviderProps) =>
   {
     try
     {
-      const response = await api.post('users', data);
-      console.log(response);
-      toast.success('Conta crianda com sucesso!');
+      await api.post('users', data);
+      toast.success('Conta criada com sucesso!');
       navigate('/');
     }
     catch(error)
     {
-      toast.error('Ops! Não foi possível')
+      toast.error('Ops! Algo deu errado')
     }
   }
 

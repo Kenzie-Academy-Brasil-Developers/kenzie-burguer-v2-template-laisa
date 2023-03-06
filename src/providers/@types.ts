@@ -30,12 +30,15 @@ export interface ICardContext
 {
   products: IProducts[];
   setProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
-  productCarts: IProducts[];
-  setProductCarts: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  carts: IProducts[];
+  setCarts: React.Dispatch<React.SetStateAction<IProducts[]>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   searchList: IProducts[];
-  addBurguer: (product: IProducts) => void;
+  searchCart: (event: React.ChangeEvent | any) => void,
+  toAdd: (product: IProducts) => void;
+  toRemove: (product: IProducts) => void;
+  remove: () => void;
 }
 
 export interface IProducts 

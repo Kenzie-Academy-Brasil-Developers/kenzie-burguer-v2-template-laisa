@@ -12,41 +12,41 @@ const Header = () =>
   const { userLogout } = useContext(UserContext);
   const [showCartModal, setShowCartModal] = useState(false);
 
-  const handleCartButtonClick = () => {
+  const handleOpenClick = () => {
     setShowCartModal(true);
   };
 
   const handleCloseClick = () => {
-    setShowCartModal(false); // fecha o modal
+    setShowCartModal(false);
   };
 
   return (
-  <StyledHeader>
-    <StyledContainer containerWidth={1300}>
-      <div className='flexGrid'>
-        <img
-          src={LogoKenzieBurguer}
-          alt='Kenzie Burguer Logo'
-          className='logo'
-        />
-        <nav className='nav' role='navigation'>
-          <SearchForm />
-          <div className='buttons'>
-            <button
-              type='button'
-              onClick={handleCartButtonClick}
-            >
-              <MdShoppingCart size={28} />
-            </button>
-            <button type='button' onClick={userLogout}>
-              <MdLogout size={28} />
-            </button>
-          </div>
-        </nav>
-      </div>
-    </StyledContainer>
-    {showCartModal && <CartModal onClose={handleCloseClick} />}
-  </StyledHeader>
+    <StyledHeader>
+      <StyledContainer containerWidth={1300}>
+        <div className='flexGrid'>
+          <img
+            src={LogoKenzieBurguer}
+            alt='Kenzie Burguer Logo'
+            className='logo'
+          />
+          <nav className='nav' role='navigation'>
+            <SearchForm />
+            <div className='buttons'>
+              <button
+                type='button'
+                onClick={handleOpenClick}
+              >
+                <MdShoppingCart size={28} />
+              </button>
+              <button type='button' onClick={userLogout}>
+                <MdLogout size={28} />
+              </button>
+            </div>
+          </nav>
+        </div>
+      </StyledContainer>
+      {showCartModal && <CartModal onClose={handleCloseClick} />}
+    </StyledHeader>
   )
 };
 

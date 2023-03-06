@@ -39,7 +39,6 @@ export const StyledLoginPage = styled.main`
       flex-direction: column-reverse;
       .ballsImage {
         display: none;
-      }
     }
   }
 `;

@@ -1,21 +1,25 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ICardContext, IDefaultProviderProps, IProducts } from "./@types";
+import { ICardContext, IDefaultProviderProps, IProducts } from './@types';
 import { api } from '../services/api';
 
 export const CartContext = createContext({} as ICardContext);
 
 export const CartContextProvider = ({ children }: IDefaultProviderProps) =>
 {
-  const [products, setProducts] = useState<IProducts[]>([]);
-  const [productCarts, setProductCarts] = useState<IProducts[]>([]);
   const navigate = useNavigate();
-  const token: any = localStorage.getItem('@Token');
   const [search, setSearch] = useState('');
+  const [products, setProducts] = useState<IProducts[]>([]);
+  const [carts, setCarts] = useState<IProducts[]>([]);
+  const token = localStorage.getItem('@Token');
 
-  const searchList = products.filter((product) =>
-  search === '' ? true : (product.category.toLowerCase().includes(search.toLowerCase())));
+  const searchCart = (event: React.ChangeEvent | any) =>
+  {
+    setSearch(event.target.value);
+  }
+
+  const searchList = products.filter(product => product.category.toLowerCase().includes(search.toLowerCase()));
   
   useEffect(() =>
   {
@@ -40,22 +44,35 @@ export const CartContextProvider = ({ children }: IDefaultProviderProps) =>
     local()
   }, [token]);
 
-  const addBurguer = (product: IProducts) =>
+  const toAdd = (product: IProducts) =>
   {
-    const retorno = productCarts.find((productCart) => productCart.id === product.id)
-    if(!retorno)
+    const retorno = carts.find((cart) => cart.id === product.id);
+    const validation = products.some(element => element.id === retorno?.id);
+
+    if(!validation)
     {
-      setProductCarts([...productCarts, product]);
-      console.log('Produto adicionado com sucesso!');
-      console.log(productCarts);
+      toast.success('Produto adicionado com sucesso!');
+      setCarts([...carts, product]);
     }else
     {
       toast.error('Produto já existente no carrinho');
     }
   }
 
+  const toRemove = (product: IProducts) =>
+  {
+    const retorno = carts.filter((cart) => cart.id !== product.id);
+    toast.success('Produto removido com sucesso')
+    setCarts(retorno);
+  }
+
+  const remove = () =>
+  {
+    setCarts([]);
+  }
+
   return (
-    <CartContext.Provider value={{ products, setProducts, search, setSearch, searchList, addBurguer, productCarts, setProductCarts }}>
+    <CartContext.Provider value={{ products, setProducts, search, setSearch, searchList, searchCart, toAdd, carts, setCarts, toRemove, remove }}>
       { children }
     </CartContext.Provider>
   )

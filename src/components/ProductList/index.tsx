@@ -1,7 +1,8 @@
 import ProductCard from './ProductCard';
 import { StyledProductList } from './style';
 
-const ProductList = () => (
+const ProductList = () => 
+(
   <StyledProductList>
     <ProductCard />
   </StyledProductList>

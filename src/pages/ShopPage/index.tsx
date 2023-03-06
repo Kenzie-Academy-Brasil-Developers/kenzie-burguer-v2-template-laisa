@@ -3,7 +3,8 @@ import Header from '../../components/Header';
 import ProductList from '../../components/ProductList';
 import { StyledContainer } from '../../styles/grid';
 
-const ShopPage = () => (
+const ShopPage = () => 
+(
   <StyledShopPage>
     <Header />
     <main>
