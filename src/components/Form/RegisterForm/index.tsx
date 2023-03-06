@@ -31,7 +31,6 @@ const RegisterForm = () => {
   return (
     <StyledForm onSubmit={handleSubmit(userRegister)}>
       <Input type='text' label='Nome' defaultValue='' name='name' register={register} error={errors.name} />
-      {errors.name}
       <Input type='email' label='Email' defaultValue='' name='email' register={register} error={errors.email} />
       <Input type='password' label='Senha' defaultValue='' name='password' register={register} error={errors.password} />
       <Input type='password' label='Confirmar senha' defaultValue='' name='confirmationPassword' register={register} error={errors.confirmationPassword} />
