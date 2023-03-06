@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '../Input';
-import { StyledButton } from '../../../styles/button';
 import { StyledForm } from '../../../styles/form';
+import { StyledButton } from '../../../styles/button';
 import { IRegisterFormValues } from '../../../providers/@types';
 import { UserContext } from '../../../providers/UserContext';
 
