@@ -19,7 +19,7 @@ export const CartContextProvider = ({ children }: IDefaultProviderProps) =>
     setSearch(event.target.value);
   }
 
-  const searchList = products.filter(product => product.category.toLowerCase().includes(search.toLowerCase()) || product.name.toLowerCase().includes(search.toLowerCase()));
+  const searchList = products.filter(product => product.category.toLowerCase().includes(search.toLowerCase()));
   
   useEffect(() =>
   {
